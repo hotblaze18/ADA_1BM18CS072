@@ -1,0 +1,81 @@
+#include<iostream>
+
+int euclid_gcd(int m,int n)
+{   int rem;
+    while(n!=0)
+    {
+        rem=m%n;
+        m=n;
+        n=rem;
+    }
+    return m;
+}
+
+int main()
+{   
+    int m,n;
+    cout<<"enter the values of m and n";
+    cin>>m>>n;
+    cout<<"gcd of two numbers is";
+    cout<<"using Euclid's method";
+    cout<<euclid_gcd(m,n);
+    cout<<"using consecutive integer method";
+    cout<<consecutive_int_gcd(m,n);
+    cout<<"using repetitive subtraction";
+    cout<<rep_sub_gcd(m,n);
+    cout<<"using middle school method";
+    cout<<middle_school_gcd(m,n);
+
+    return 0;
+}
+
+int min(int x, int y)
+{
+    if(x>y)
+     return y;
+    else
+     return x;
+}
+int consecutive_int_gcd(int m,int n)
+{   int small;
+    small=min(m,n);
+    while(1)
+    {
+    if((m%small==0) && (n%small==0))
+     return small;
+    small=small-1;
+    }
+    return 0;
+}
+
+int middle_school_gcd(int m,int n)
+{   
+    int result=0;
+    if((m==0)||(n==0))
+    {
+       return result; 
+    }
+    else
+    {   int i;
+        for(i=1;i<=n && i<=m;i++)
+        {
+            if((m%i==0)&&(n%i==0))
+            {
+                result=i;
+            }
+        }
+        return result;
+    }
+}
+
+int rep_sub_gcd(int m,int n)
+{   
+   while(m!=n)
+   {
+     if(m>n)
+      m=m-n;
+    else
+      n=n-m;
+   }
+   return m;
+}
