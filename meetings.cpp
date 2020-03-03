@@ -23,10 +23,17 @@ void isort(meeting a[], int n) {
 int max_meetings(meeting m[], int n) {
 	isort(m, n);
 	int c = 0;
-	for(int i=0; i<n; i++) {
-		if(m[i+1].start < m[i].end)
-			continue;
-		else c++;
+	int i = 0;
+	int j = i+1;
+	while(j <= n) {
+        if(m[j].start < m[i].end) {
+            j++;
+        }
+        else {
+            i = j;
+            j++;
+            c++;
+        }
 	}
 return c;
 }
@@ -41,3 +48,4 @@ int main() {
 	}
 	cout << max_meetings(m, n);
 }
+
